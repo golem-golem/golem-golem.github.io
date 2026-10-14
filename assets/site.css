@@ -468,6 +468,7 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 .foot-mark { font-family: var(--display); font-style: italic; font-weight: 600; font-size: 32px; }
 .foot-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 26px; font-size: 16px; color: var(--cream-soft); }
 .foot-contacts span { white-space: nowrap; }
+@media (max-width: 360px) { .foot-contacts span { white-space: normal; } .foot-contacts a { overflow-wrap: anywhere; } }
 .foot-contacts a { color: var(--cream); }
 .foot-copy { font-size: 13px; color: var(--cream-soft); }
 
