@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Библиотека — Golem</title>
+<meta name="description" content="Общедоступная библиотека Golem: книги стоят по фамилиям авторов, каждая ведёт на свой файл в открытом Telegram-канале.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Общедоступная библиотека — Golem">
+<meta property="og:description" content="Хранилище текстов, открытое для всех.">
+<meta property="og:image" content="img/og.jpg">
+<link rel="icon" type="image/png" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&amp;family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<svg class="svg-defs" aria-hidden="true" focusable="false"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" seed="4" result="n"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter></svg>
+
+
+<header class="site-head">
+  <a class="brand" href="index.html" data-transition><img src="img/sign-red.png" alt="" width="40" height="40"><span>Golem</span><span class="sr-only">— на главную</span></a>
+  <nav class="topnav" aria-label="Разделы">
+    <a href="kurs.html" data-transition><span class="full">Большой курс</span><span class="short">Курс</span></a>
+    <a href="index.html#personal" data-transition><span class="full">Индивидуальное ведение</span><span class="short">Ведение</span></a>
+    <a href="biblioteka.html" aria-current="page"><span class="full">Библиотека</span><span class="short">Библиотека</span></a>
+  </nav>
+</header>
+
+<main>
+  <div class="sheet">
+    <div class="sheet-inner lib-head">
+      <div class="eyebrow">Глава III · Library</div>
+      <h1 class="chapter-title">Общедоступная библиотека</h1>
+      <div class="subtitle">открыта для всех</div>
+      <div class="double-rule" aria-hidden="true"></div>
+      <div class="lib-intro">
+        <p>Хранилище текстов, которое я создала для вашего роста.</p>
+        <span class="lib-hint">Книги стоят по фамилиям авторов. Нажмите на корешок.</span>
+      </div>
+    </div>
+
+    <div class="bookcase" role="region" aria-label="Книжный шкаф">
+      <div class="bookcase-crown" aria-hidden="true"></div>
+      <div class="shelves" id="shelves">
+        <noscript><p style="color: var(--cream); padding: 24px 0;">Чтобы открыть полку, включите JavaScript в браузере.</p></noscript>
+      </div>
+    </div>
+
+    <div class="sheet-inner">
+      <div class="offer">
+        <div class="offer-inner">
+          <div class="eyebrow">Формат работы со мной</div>
+          <h3>Чтение с сопровождением</h3>
+          <blockquote>«Я боюсь, что не смогу разобраться сам и всё понять правильно. Хочу читать под твоим руководством и сопровождением и обсуждать всё прочитанное».</blockquote>
+          <a class="btn btn--sm" href="#" data-todo="personal-chat">Хочу узнать цену</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="book-modal" id="book-modal" role="dialog" aria-modal="true" aria-labelledby="book-title" hidden>
+  <div class="book">
+    <button class="book-x" type="button" data-close aria-label="Закрыть книгу">×</button>
+    <div class="book-pages">
+      <div class="book-left">
+        <div class="book-lib">Библиотека Golem</div>
+        <div class="book-author" id="book-author"></div>
+        <div class="ornament" aria-hidden="true"><span></span></div>
+        <h2 class="book-title" id="book-title"></h2>
+        <div class="book-from">из общедоступной библиотеки</div>
+      </div>
+      <div class="book-right">
+        <div class="exlibris">
+          <div class="exlibris-inner">
+            <h3>Хотите прочитать?</h3>
+            <p>Книга лежит файлом в открытом Telegram-канале библиотеки. Ссылка ведёт прямо на этот файл.</p>
+            <a class="btn" id="book-read" target="_blank" rel="noopener">Читать в Telegram</a>
+            <p class="no-link" id="book-nolink" hidden>Ссылка появится, когда книга будет в канале.</p>
+            <button type="button" class="book-close-link" data-close>Закрыть книгу</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-foot">
+  <div class="foot-mark">Golem</div>
+  <nav aria-label="Разделы">
+    <a href="kurs.html" data-transition>Большой курс</a>
+    <a href="index.html#personal" data-transition>Индивидуальное ведение</a>
+    <a href="biblioteka.html" aria-current="page">Библиотека</a>
+  </nav>
+  <p class="foot-contacts">Почта: <a href="mailto:idoleyesbook@gmail.com">idoleyesbook@gmail.com</a> · Telegram-канал: <a href="https://t.me/censorshitt" target="_blank" rel="noopener">t.me/censorshitt</a></p>
+  <p class="foot-copy">© 2026 Golem</p>
+</footer>
+
+<script src="assets/books.js" defer></script>
+<script src="assets/library.js" defer></script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
