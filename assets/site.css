@@ -153,18 +153,20 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 .btn::before {
   content: "";
   position: absolute;
-  inset: 0;
+  /* слой шире кнопки: рваный край мазка не упирается в его границу и не срезается (Safari на iPhone) */
+  inset: -12px;
+  padding: 12px;
   z-index: -1;
-  background: var(--cinnabar);
+  background: var(--cinnabar) content-box;
   border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%;
   filter: url(#rough);
   transition: background-color 0.2s ease;
 }
 .btn:hover, .btn:focus-visible { color: var(--on-cinnabar); }
-.btn:hover::before { background: var(--cinnabar-deep); }
+.btn:hover::before { background-color: var(--cinnabar-deep); }
 .btn--sm { min-height: 44px; padding: 8px 28px; font-size: 20px; }
 .btn[aria-disabled="true"] { cursor: default; opacity: 0.55; }
-.btn[aria-disabled="true"]:hover::before { background: var(--cinnabar); }
+.btn[aria-disabled="true"]:hover::before { background-color: var(--cinnabar); }
 
 .actions { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 30px; }
 .link-arrow { font-size: 19px; }
@@ -464,10 +466,8 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
   background: var(--desk); color: var(--cream); text-align: center;
 }
 .foot-mark { font-family: var(--display); font-style: italic; font-weight: 600; font-size: 32px; }
-.site-foot nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; }
-.site-foot nav a { color: var(--cream); text-decoration: none; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; }
-.site-foot nav a:hover { color: var(--brass); }
-.foot-contacts { font-size: 16px; color: var(--cream-soft); }
+.foot-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 26px; font-size: 16px; color: var(--cream-soft); }
+.foot-contacts span { white-space: nowrap; }
 .foot-contacts a { color: var(--cream); }
 .foot-copy { font-size: 13px; color: var(--cream-soft); }
 
