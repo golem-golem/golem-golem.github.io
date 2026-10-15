@@ -1,4 +1,4 @@
-/* Схема «О курсе»: четыре знака, каждый открывает свою часть.
+/* Интерактивная схема (страницы курса и ведения): знаки открывают свои тексты.
    Когда открыты все четыре, спираль в центре загорается и появляется приглашение записаться. */
 (function () {
   'use strict';
@@ -8,7 +8,7 @@
   var progress = document.getElementById('scheme-progress');
   if (!scheme || !panel || !progress) return;
 
-  var nodes = Array.prototype.slice.call(scheme.querySelectorAll('.scheme-node'));
+  var nodes = Array.prototype.slice.call(scheme.querySelectorAll('[data-node]'));
   var texts = Array.prototype.slice.call(panel.querySelectorAll('[data-text]'));
   var total = nodes.length;
   var opened = {};
@@ -26,11 +26,12 @@
       return;
     }
     progress.textContent = '';
+    // текст и ссылка в конце берутся из атрибутов схемы, чтобы одна логика служила курсу и ведению
     var done = document.createElement('span');
-    done.textContent = 'Схема собрана. ';
+    done.textContent = scheme.getAttribute('data-done-text') || 'Схема собрана. ';
     var link = document.createElement('a');
-    link.href = '#zapis';
-    link.textContent = 'Записаться на поток →';
+    link.href = scheme.getAttribute('data-done-href') || '#zapis';
+    link.textContent = scheme.getAttribute('data-done-label') || 'Записаться на поток →';
     progress.appendChild(done);
     progress.appendChild(link);
   }

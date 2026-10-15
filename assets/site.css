@@ -280,6 +280,65 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 .scheme-list li::before { content: ""; position: absolute; left: 3px; top: 0.6em; width: 7px; height: 7px; background: var(--cinnabar); transform: rotate(45deg); }
 .run-in { font-family: var(--display); font-style: italic; font-weight: 600; font-size: 1.12em; color: var(--cinnabar); }
 
+/* Схема ведения: страница календаря. В центре знак «Ведение», ниже три срока клетками-неделями (строка — 13 недель) */
+.almanac { margin-top: 28px; padding: 6px; border: 1.5px solid var(--ink); }
+.almanac-inner { border: 1px solid var(--frame); padding: 30px 28px 26px; display: flex; flex-direction: column; align-items: center; gap: 26px; }
+.almanac-core {
+  width: 168px; aspect-ratio: 1 / 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  padding: 0 12px;
+  border: 1.5px solid var(--ink); border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 0 0 5px var(--paper), 0 0 0 6px rgba(35, 26, 18, 0.55);
+  color: var(--ink); font: inherit; cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+.almanac-core img { width: 44px; height: 44px; }
+.core-label { font-family: var(--display); font-weight: 600; font-size: 25px; line-height: 1; }
+.core-sub { font-family: var(--display); font-style: italic; font-size: 15px; line-height: 1.15; color: var(--ink-soft); text-align: center; }
+.almanac-core:hover { transform: scale(1.04); }
+.almanac-core:focus-visible, .almanac-row:focus-visible { outline: 2px solid var(--cinnabar); outline-offset: 6px; }
+.almanac-core.is-open { border-color: var(--cinnabar); background: var(--cinnabar-tint); }
+.almanac-core.is-active { border-color: var(--cinnabar); background: var(--cinnabar); color: var(--on-cinnabar); }
+.almanac-core.is-active .core-sub { color: var(--on-cinnabar); }
+.almanac-core.is-active img { filter: brightness(0) invert(0.93) sepia(0.2); }
+.almanac.is-complete .almanac-core:not(.is-active) { box-shadow: 0 0 0 5px var(--paper), 0 0 0 6.5px var(--cinnabar); }
+
+.almanac-rows { width: 100%; display: flex; flex-direction: column; }
+.almanac-row {
+  width: 100%;
+  display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 22px; align-items: center;
+  padding: 16px 12px; margin: 0;
+  border: 0; border-top: 1px solid var(--hair);
+  background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+.almanac-row:last-child { border-bottom: 1px solid var(--hair); }
+.almanac-row:hover { background: var(--cinnabar-wash); }
+.row-head { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 8px; align-items: baseline; }
+.row-num { grid-row: span 2; font-family: var(--display); font-weight: 600; font-size: 24px; color: var(--cinnabar); }
+.row-title { font-family: var(--display); font-weight: 600; font-size: 25px; line-height: 1.1; }
+.row-meta { font-family: var(--display); font-style: italic; font-size: 17px; color: var(--ink-soft); }
+.weeks { display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 5px; }
+.weeks i {
+  display: block; aspect-ratio: 1 / 1;
+  border: 1px solid var(--frame);
+  background: var(--paper);
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+.almanac-row.is-open .weeks i { background: var(--cinnabar-tint); border-color: var(--cinnabar); }
+.almanac-row.is-active { background: var(--cinnabar-wash); }
+.almanac-row.is-active .weeks i { background: var(--cinnabar); border-color: var(--cinnabar-deep); transition-delay: calc(var(--i) * 12ms); }
+.almanac-row.is-active .row-title { color: var(--cinnabar); }
+.tier-price { font-family: var(--display); font-weight: 600; font-size: 24px; color: var(--cinnabar); }
+
+/* с чем приходят — два списка рядом */
+.requests { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 26px 40px; }
+.requests h3 { font-size: 27px; line-height: 1.1; }
+.sheet-section > .scheme-list { margin-top: 16px; }
+.call-text { max-width: 44ch; }
+#zvonok { scroll-margin-top: 24px; }
+
 /* «Узнать про курс»: список тем на странице курса */
 .topics { margin-top: 30px; padding: 6px; border: 1.5px solid var(--cinnabar); background: var(--cinnabar-wash); }
 .topics-inner { border: 1px solid var(--frame); padding: 24px 26px 18px; }
@@ -600,6 +659,17 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
   .scheme-panel-inner { padding: 20px 18px 22px; }
   .scheme-text h3 { font-size: 26px; }
   .scheme-progress, .scheme-empty { font-size: 18px; }
+  .almanac-inner { padding: 22px 12px 16px; gap: 20px; }
+  .almanac-core { width: 148px; }
+  .core-label { font-size: 22px; }
+  .core-sub { font-size: 14px; }
+  .almanac-row { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 14px 4px; }
+  .row-title { font-size: 22px; }
+  .row-meta { font-size: 16px; }
+  .weeks { gap: 4px; }
+  .requests { grid-template-columns: minmax(0, 1fr); }
+  .requests h3 { font-size: 24px; }
+  .tier-price { font-size: 21px; }
   .topics-inner { padding: 20px 16px 10px; }
   .topics-title { font-size: 28px; }
   .topics-sub { font-size: 18px; }
