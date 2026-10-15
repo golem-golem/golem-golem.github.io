@@ -357,6 +357,9 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 .offer .eyebrow { color: var(--cinnabar); }
 .offer h3 { font-size: 34px; line-height: 1.08; }
 .offer blockquote { margin: 4px 0 0; font-family: var(--display); font-style: italic; font-size: 23px; line-height: 1.4; max-width: 36ch; }
+.offer-text { max-width: 52ch; }
+.offer blockquote + .offer-text { margin-top: 6px; }
+.offer-price { font-family: var(--display); font-weight: 600; font-size: 26px; line-height: 1.1; color: var(--cinnabar); }
 .offer .btn { margin-top: 10px; }
 .sheet-inner > .offer { margin-top: 48px; }
 
