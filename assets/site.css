@@ -624,12 +624,12 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
   .intro { margin-top: 28px; font-size: 17px; }
   .hero-img {
     position: static;
-    width: calc(100% + 44px); max-width: none; height: 400px;
+    /* рисунок целиком, со спиралью, от края до края экрана */
+    width: calc(100% + 44px); max-width: none; height: auto;
     margin: 44px -22px 0;
-    object-fit: cover; object-position: 35% top;
-    /* низ рисунка растворяется в странице, без резкой границы */
-    -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent);
-    mask-image: linear-gradient(to bottom, #000 80%, transparent);
+    /* самый низ рисунка растворяется в странице, без резкой границы */
+    -webkit-mask-image: linear-gradient(to bottom, #000 91%, transparent);
+    mask-image: linear-gradient(to bottom, #000 91%, transparent);
   }
   .toc-head { margin-top: 26px; font-size: 25px; }
   .toc a { min-height: 54px; align-items: center; padding: 6px 0; }
