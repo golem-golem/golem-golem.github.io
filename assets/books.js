@@ -25,5 +25,7 @@ window.GOLEM_BOOKS = [
   { surname: 'Plato', author: 'Plato', title: 'Complete Works', link: 'https://t.me/bibloooooos/20' },
   { surname: 'Сборник', author: 'Сборник', title: 'Священные тексты народов мира', link: 'https://t.me/bibloooooos/21' },
   { surname: 'Бодрийяр', author: 'Жан Бодрийяр', title: 'Симулякры и симуляции', link: 'https://t.me/bibloooooos/22' },
-  { surname: 'Batalden', author: 'Stephen K. Batalden', title: 'Russian Bible Wars: Modern Scriptural Translation and Cultural Authority', link: 'https://t.me/bibloooooos/23' }
+  { surname: 'Batalden', author: 'Stephen K. Batalden', title: 'Russian Bible Wars: Modern Scriptural Translation and Cultural Authority', link: 'https://t.me/bibloooooos/23' },
+  { surname: 'Эпштейн', author: 'Михаил Эпштейн', title: 'Религия после атеизма', link: 'https://t.me/bibloooooos/24' },
+  { surname: 'Таксиль', author: 'Лео Таксиль', title: 'Забавная Библия', link: 'https://t.me/bibloooooos/25' }
 ];
