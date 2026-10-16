@@ -358,6 +358,10 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 .offer h3 { font-size: 34px; line-height: 1.08; }
 .offer blockquote { margin: 4px 0 0; font-family: var(--display); font-style: italic; font-size: 23px; line-height: 1.4; max-width: 36ch; }
 .offer-text { max-width: 52ch; }
+.offer + .offer { margin-top: 26px; }
+.offer-note { max-width: 52ch; font-family: var(--display); font-style: italic; font-size: 19px; line-height: 1.4; color: var(--ink-soft); }
+.offer-lead { max-width: 40ch; font-family: var(--display); font-style: italic; font-weight: 600; font-size: 21px; line-height: 1.35; color: var(--cinnabar); }
+.requests-other { margin-top: 22px; }
 .offer blockquote + .offer-text { margin-top: 6px; }
 .offer-price { font-family: var(--display); font-weight: 600; font-size: 26px; line-height: 1.1; color: var(--cinnabar); }
 .offer .btn { margin-top: 10px; }
