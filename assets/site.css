@@ -158,8 +158,8 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
   inset: -12px -10px;
   z-index: -1;
   background-color: var(--cinnabar);
-  -webkit-mask: url(../img/brush.svg) 0 0 / 100% 100% no-repeat;
-  mask: url(../img/brush.svg) 0 0 / 100% 100% no-repeat;
+  -webkit-mask: url(../img/mazok.svg) 0 0 / 100% 100% no-repeat;
+  mask: url(../img/mazok.svg) 0 0 / 100% 100% no-repeat;
   transition: background-color 0.2s ease;
 }
 .btn:hover, .btn:focus-visible { color: var(--on-cinnabar); }
