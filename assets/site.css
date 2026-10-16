@@ -153,13 +153,12 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 .btn::before {
   content: "";
   position: absolute;
-  /* слой шире кнопки: рваный край мазка не упирается в его границу и не срезается (Safari на iPhone) */
-  inset: -12px;
-  padding: 12px;
+  /* мазок киноварью — готовая фигура-маска, без SVG-фильтра: одинаково во всех браузерах, включая Safari */
+  inset: -3px -8px;
   z-index: -1;
-  background: var(--cinnabar) content-box;
-  border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%;
-  filter: url(#rough);
+  background-color: var(--cinnabar);
+  -webkit-mask: url(../img/brush.svg) center / 100% 100% no-repeat;
+  mask: url(../img/brush.svg) center / 100% 100% no-repeat;
   transition: background-color 0.2s ease;
 }
 .btn:hover, .btn:focus-visible { color: var(--on-cinnabar); }
