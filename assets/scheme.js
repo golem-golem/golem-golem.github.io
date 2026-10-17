@@ -36,25 +36,35 @@
     progress.appendChild(link);
   }
 
-  nodes.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var key = btn.getAttribute('data-node');
-      opened[key] = true;
-      nodes.forEach(function (b) {
-        var active = b === btn;
-        b.classList.toggle('is-active', active);
-        b.setAttribute('aria-pressed', active ? 'true' : 'false');
-      });
-      btn.classList.add('is-open');
-      show(key);
-      if (count() === total) scheme.classList.add('is-complete');
-      renderProgress();
-
-      // На телефоне панель с текстом может быть ниже экрана — плавно показываем её.
-      var r = panel.getBoundingClientRect();
-      if (r.top > window.innerHeight - 80 || r.bottom < 0) {
-        try { panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) { panel.scrollIntoView(false); }
-      }
+  function open(btn, scroll) {
+    var key = btn.getAttribute('data-node');
+    opened[key] = true;
+    nodes.forEach(function (b) {
+      var active = b === btn;
+      b.classList.toggle('is-active', active);
+      b.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
+    btn.classList.add('is-open');
+    show(key);
+    if (count() === total) scheme.classList.add('is-complete');
+    renderProgress();
+    if (!scroll) return;
+
+    // На телефоне панель с текстом может быть ниже экрана — плавно показываем её.
+    var r = panel.getBoundingClientRect();
+    if (r.top > window.innerHeight - 80 || r.bottom < 0) {
+      try { panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) { panel.scrollIntoView(false); }
+    }
+  }
+
+  nodes.forEach(function (btn) {
+    btn.addEventListener('click', function () { open(btn, true); });
   });
+
+  // знак, открытый сразу при загрузке страницы (атрибут data-default у схемы)
+  var def = scheme.getAttribute('data-default');
+  if (def) {
+    var first = scheme.querySelector('[data-node="' + def + '"]');
+    if (first) open(first, false);
+  }
 })();
