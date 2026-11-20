@@ -467,6 +467,56 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 .steps li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: baseline; counter-increment: step; }
 .steps li::before { content: counter(step) "."; font-family: var(--display); font-style: italic; font-weight: 600; font-size: 28px; color: var(--cinnabar); }
 
+/* лестница форматов на странице ведения: три ступени, каждая выше предыдущей */
+.ladder {
+  list-style: none; margin: 30px 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 14px;
+  align-items: end;
+}
+@media (min-width: 901px) and (max-width: 1180px) { .ladder { gap: 0 10px; } .rung-card h3 { font-size: 24px; } }
+.rung { display: flex; flex-direction: column; }
+.rung-card {
+  position: relative; flex: 1;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  padding: 30px 18px 24px;
+  border: 1.5px solid var(--frame); border-bottom: 0;
+  background: var(--paper);
+  box-shadow: inset 0 0 0 5px var(--paper), inset 0 0 0 6px rgba(35, 26, 18, 0.18);
+}
+.rung--here .rung-card { border-color: var(--cinnabar); background: var(--cinnabar-wash); }
+.rung-num {
+  position: absolute; top: -26px; left: 18px;
+  width: 50px; height: 50px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--cinnabar); color: var(--on-cinnabar);
+  font-family: var(--display); font-weight: 700; font-size: 20px;
+  box-shadow: inset 0 0 0 3px var(--cinnabar), inset 0 0 0 4.5px var(--on-cinnabar), 0 0 0 5px var(--paper);
+}
+.rung-card h3 { margin-top: 10px; font-size: 27px; line-height: 1.1; }
+.rung-meta { font-family: var(--display); font-style: italic; font-size: 19px; color: var(--cinnabar); }
+.rung-card p { margin: 0; font-size: 16.5px; line-height: 1.5; }
+.rung-price { margin-top: auto !important; padding-top: 6px; font-family: var(--display); font-weight: 700; font-size: 24px; color: var(--cinnabar); }
+.rung-more { font-size: 16px; }
+/* кнопка в узкой ступени — в одну строку */
+.rung .btn--sm { white-space: nowrap; padding: 8px 20px; font-size: 18px; margin-left: 6px; }
+/* камень ступени под карточкой: каждая следующая выше на 56px */
+.rung-stone {
+  display: block; height: calc(18px + var(--rise) * 56px);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 17px, rgba(35, 26, 18, 0.14) 17px 18px),
+    var(--paper-fold);
+  border: 1.5px solid var(--frame);
+}
+.rung--here .rung-stone { border-color: var(--cinnabar); }
+@media (max-width: 900px) {
+  .ladder { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .rung { margin-left: calc(var(--rise) * 14px); }
+  .rung-card { border-bottom: 1.5px solid var(--frame); padding: 30px 18px 22px; }
+  .rung--here .rung-card { border-bottom-color: var(--cinnabar); }
+  .rung-stone { display: none; }
+  .rung-card h3 { font-size: 25px; }
+}
+
 /* карта «Маршрут» на странице ведения: древо сфирот и легенда */
 .route-tree {
   margin-top: 30px; padding: 34px 30px 30px;
