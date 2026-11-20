@@ -33,3 +33,23 @@
     });
   }
 })();
+
+/* Три карты форматов на телефоне: точки под лентой показывают, какая карта перед глазами. */
+(function () {
+  'use strict';
+  var list = document.getElementById('tarots');
+  var dots = document.getElementById('tarot-dots');
+  if (!list || !dots) return;
+  var cards = list.querySelectorAll('.tarot');
+  var marks = dots.querySelectorAll('i');
+  function update() {
+    var mid = list.scrollLeft + list.clientWidth / 2, best = 0, bestD = Infinity;
+    for (var i = 0; i < cards.length; i++) {
+      var c = cards[i].offsetLeft + cards[i].offsetWidth / 2, d = Math.abs(c - mid);
+      if (d < bestD) { bestD = d; best = i; }
+    }
+    for (var j = 0; j < marks.length; j++) marks[j].classList.toggle('is-on', j === best);
+  }
+  var t = null;
+  list.addEventListener('scroll', function () { if (t) cancelAnimationFrame(t); t = requestAnimationFrame(update); }, { passive: true });
+})();
