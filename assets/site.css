@@ -109,9 +109,9 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 /* гравюра в рамке */
 .plate { margin: 0; }
 .plate-frame { border: 1px solid var(--frame); padding: 10px; }
-.plate img { width: 100%; height: 440px; object-fit: cover; mix-blend-mode: multiply; }
+/* гравюра всегда целиком, в своих пропорциях — ничего не срезается на планшете и ноутбуке */
+.plate img { width: 100%; height: auto; mix-blend-mode: multiply; }
 .plate figcaption { margin-top: 14px; text-align: center; font-family: var(--display); font-style: italic; font-size: 20px; color: var(--ink-soft); }
-.plate--tall img { height: 500px; }
 .page--plate { justify-content: center; }
 .page--plate .page-num { margin-top: 0; }
 .plate-wrap { margin-block: auto; }
@@ -201,8 +201,9 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 .hero-cta { position: relative; z-index: 1; align-self: flex-end; }
 .hero-img {
   position: absolute; right: 0; bottom: 0;
-  width: min(690px, 100%); height: calc(100% - 110px);
-  object-fit: cover; object-position: left top;
+  /* рисунок целиком: прижат к низу страницы, а если места мало — уменьшается, а не обрезается */
+  width: min(690px, 100%); height: auto; max-height: calc(100% - 110px);
+  object-fit: contain; object-position: right bottom;
   mix-blend-mode: multiply;
 }
 
@@ -817,7 +818,6 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
   .subtitle { font-size: 20px; }
   .double-rule { margin-top: 14px; }
   .plate-frame { padding: 6px; }
-  .plate img, .plate--tall img { height: 210px; }
   .plate figcaption { margin-top: 8px; font-size: 17px; }
   .lede { margin-top: 20px; }
 
