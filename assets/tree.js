@@ -53,3 +53,26 @@
   var t = null;
   list.addEventListener('scroll', function () { if (t) cancelAnimationFrame(t); t = requestAnimationFrame(update); }, { passive: true });
 })();
+
+/* Карта «Чтение со мной»: нажатие на картинку или кнопку переворачивает её — на обороте два варианта. */
+(function () {
+  'use strict';
+  var triggers = document.querySelectorAll('.tarot-flip');
+  Array.prototype.forEach.call(triggers, function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.tarot-card');
+      if (!card) return;
+      var flipped = !card.classList.contains('is-flipped');
+      card.classList.toggle('is-flipped', flipped);
+      var front = card.querySelector('.tarot-face--front');
+      var back = card.querySelector('.tarot-face--back');
+      if (front) { if (flipped) front.setAttribute('inert', ''); else front.removeAttribute('inert'); }
+      if (back) { if (flipped) back.removeAttribute('inert'); else back.setAttribute('inert', ''); }
+      Array.prototype.forEach.call(card.querySelectorAll('.tarot-flip'), function (b) {
+        b.setAttribute('aria-expanded', flipped ? 'true' : 'false');
+      });
+      var focusTo = flipped ? back && back.querySelector('.variant .btn') : front && front.querySelector('.tarot-pic');
+      if (focusTo) setTimeout(function () { try { focusTo.focus({ preventScroll: true }); } catch (e) { focusTo.focus(); } }, 400);
+    });
+  });
+})();

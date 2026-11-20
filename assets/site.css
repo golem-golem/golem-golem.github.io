@@ -467,15 +467,28 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 .steps li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: baseline; counter-increment: step; }
 .steps li::before { content: counter(step) "."; font-family: var(--display); font-style: italic; font-weight: 600; font-size: 28px; color: var(--cinnabar); }
 
-/* три формата на странице ведения — три карты: на компьютере ступенями, на телефоне листаются вбок */
+/* форматы на странице ведения — карты: на компьютере ступенями, на телефоне листаются вбок.
+   Карта «Чтение со мной» переворачивается и показывает два варианта. */
 .tarots {
-  list-style: none; margin: 46px 0 0; padding: 0;
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: end;
+  list-style: none; margin: 46px auto 0; padding: 0; max-width: 780px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; align-items: stretch;
 }
-.tarot { margin-bottom: calc(var(--rise) * 34px); }
-.tarot-card { height: 100%; padding: 5px; border: 1.5px solid var(--cinnabar); background: var(--paper); box-shadow: 0 14px 26px rgba(60, 30, 10, 0.2); }
-.tarot--here .tarot-card { border-width: 2.5px; }
-.tarot-in { height: 100%; border: 1px solid var(--frame); padding: 0 16px 22px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+/* ступень: вторая карта поднимается над первой */
+.tarot { margin-top: calc((1 - var(--rise)) * 44px); }
+.tarot-card { display: grid; height: 100%; }
+.tarot-face {
+  grid-area: 1 / 1; display: flex;
+  padding: 5px; border: 1.5px solid var(--cinnabar); background: var(--paper);
+  box-shadow: 0 14px 26px rgba(60, 30, 10, 0.2);
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  transition: transform 0.75s cubic-bezier(0.3, 0.1, 0.2, 1);
+  transform: perspective(1600px) rotateY(0deg);
+}
+.tarot-face--back { transform: perspective(1600px) rotateY(180deg); }
+.tarot-card.is-flipped .tarot-face--front { transform: perspective(1600px) rotateY(-180deg); }
+.tarot-card.is-flipped .tarot-face--back { transform: perspective(1600px) rotateY(0deg); }
+.tarot--here .tarot-face { border-width: 2.5px; }
+.tarot-in { flex: 1; border: 1px solid var(--frame); padding: 0 18px 22px; display: flex; flex-direction: column; align-items: center; text-align: center; }
 .tarot-num { display: flex; align-items: flex-start; gap: 10px; width: 100%; margin-top: -24px; }
 .tarot-num::before, .tarot-num::after { content: ""; flex: 1; border-top: 1px solid var(--frame); margin-top: 24px; }
 .tarot-num span {
@@ -484,31 +497,63 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
   font-family: var(--display); font-weight: 700; font-size: 18px;
   box-shadow: inset 0 0 0 3px var(--cinnabar), inset 0 0 0 4.5px var(--on-cinnabar), 0 0 0 5px var(--paper);
 }
-.tarot-pic { width: 100%; margin-top: 12px; border: 1px solid var(--frame); padding: 4px; }
+.tarot-pic { position: relative; display: block; width: 100%; margin-top: 12px; border: 1px solid var(--frame); padding: 4px; background: none; font: inherit; color: inherit; }
 .tarot-pic img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
-.tarot h3 { margin-top: 16px; font-size: 16px; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.3; }
-.tarot-hook { margin: 8px 0 0; font-family: var(--display); font-style: italic; font-size: 19px; line-height: 1.3; }
-.tarot-meta { margin-top: 10px; font-size: 14px; color: var(--ink-soft); }
-.tarot-price {
-  margin: auto -16px 16px; padding: 9px 0; width: calc(100% + 32px);
+button.tarot-pic { cursor: pointer; }
+.tarot-tap {
+  position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%);
+  padding: 5px 12px; white-space: nowrap;
   background: var(--cinnabar); color: var(--on-cinnabar);
-  font-family: var(--display); font-weight: 700; font-size: 24px;
+  font-family: var(--display); font-style: italic; font-size: 16px;
+  box-shadow: 0 4px 10px rgba(60, 30, 10, 0.25);
+  animation: tarot-tap 2.4s ease-in-out infinite;
 }
-.tarot-in > .tarot-meta + .tarot-price { margin-top: 16px; }
+@keyframes tarot-tap { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-4px); } }
+button.tarot-pic:hover img, button.tarot-pic:focus-visible img { filter: brightness(1.05); }
+.tarot h3 { margin-top: 16px; font-size: 17px; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.3; }
+.tarot-hook { margin: 8px 0 0; font-family: var(--display); font-style: italic; font-size: 20px; line-height: 1.3; }
+.tarot-meta { margin-top: 10px; font-size: 14.5px; color: var(--ink-soft); }
+.tarot-list { list-style: none; margin: 14px 0 18px; padding: 0; width: 100%; text-align: left; }
+.tarot-list li { position: relative; padding: 9px 0 9px 22px; border-top: 1px dotted rgba(35, 26, 18, 0.35); font-size: 15.5px; line-height: 1.4; }
+.tarot-list li:last-child { border-bottom: 1px dotted rgba(35, 26, 18, 0.35); }
+.tarot-list li::before { content: "✦"; position: absolute; left: 2px; top: 9px; color: var(--cinnabar); font-size: 12px; }
+.tarot-list b { font-family: var(--display); font-size: 18px; color: var(--cinnabar); }
+.tarot-price {
+  margin: auto -18px 16px; padding: 9px 0; width: calc(100% + 36px);
+  background: var(--cinnabar); color: var(--on-cinnabar);
+  font-family: var(--display); font-weight: 700; font-size: 25px;
+}
 .tarot .btn--sm { white-space: nowrap; padding: 8px 22px; font-size: 19px; }
+/* оборот карты: два варианта */
+.tarot-back-title { margin-bottom: 4px; }
+.variant {
+  width: 100%; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--frame);
+  display: grid; grid-template-columns: 40% minmax(0, 1fr); gap: 8px 14px; align-items: center; text-align: left;
+}
+.variant img { width: 100%; height: auto; border: 1px solid var(--frame); padding: 3px; mix-blend-mode: multiply; }
+.variant h4 { font-family: var(--display); font-weight: 700; font-size: 22px; line-height: 1.1; color: var(--cinnabar); }
+.variant p { grid-column: 1 / -1; margin: 2px 0 0; font-size: 14.5px; line-height: 1.42; }
+.variant-price { margin-top: 4px; font-family: var(--display); font-weight: 700; font-size: 20px; color: var(--ink); }
+.variant .btn { grid-column: 1 / -1; justify-self: start; margin-left: 6px; }
+.tarot-back { margin-top: auto; padding: 14px 0 0; background: none; border: 0; font: inherit; font-family: var(--display); font-style: italic; font-size: 18px; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .tarot-hint, .tarot-dots { display: none; }
+@media (prefers-reduced-motion: reduce) { .tarot-face { transition: none; } .tarot-tap { animation: none; } }
 @media (max-width: 900px) {
   .tarot-hint { display: block; margin: 10px 0 0; font-family: var(--display); font-style: italic; font-size: 18px; color: var(--ink-soft); }
   .tarots {
-    display: flex; gap: 14px; align-items: stretch;
+    display: flex; gap: 14px; align-items: stretch; max-width: none;
     overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
     margin: 18px -22px 0; padding: 32px 22px 14px; scrollbar-width: none;
   }
   .tarots::-webkit-scrollbar { display: none; }
-  .tarot { flex: 0 0 82%; max-width: 380px; margin-bottom: 0; scroll-snap-align: center; }
+  .tarot { flex: 0 0 84%; max-width: 380px; margin-top: 0; scroll-snap-align: center; }
   .tarot-dots { display: flex; justify-content: center; gap: 9px; margin-top: 12px; }
   .tarot-dots i { width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--cinnabar); transition: background-color 0.2s ease; }
   .tarot-dots i.is-on { background: var(--cinnabar); }
+  .tarot-in { padding: 0 14px 20px; }
+  .tarot-price { margin-left: -14px; margin-right: -14px; width: calc(100% + 28px); }
+  .variant { grid-template-columns: 38% minmax(0, 1fr); gap: 6px 10px; }
+  .variant p { font-size: 14.5px; }
 }
 
 /* карта «Маршрут» на странице ведения: древо сфирот и легенда */
