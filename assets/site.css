@@ -998,16 +998,16 @@ button.tarot-pic:hover img, button.tarot-pic:focus-visible img { filter: brightn
 /* главная: голем с магом чуть ниже; три главы — карточки на красном фоне */
 .hero-img { width: min(640px, 100%); max-height: calc(100% - 175px); }
 @media (max-width: 900px) { .hero-img { width: calc(100% + 44px); max-height: none; margin-top: 56px; } }
-.paths-band { background: var(--cinnabar); padding: 90px 0 100px; margin: 60px 0; box-shadow: inset 0 0 0 6px var(--cinnabar), inset 0 0 0 7px rgba(239,228,202,.55); }
+.paths-band { background: radial-gradient(ellipse at 50% 30%, rgba(255,248,230,.45), transparent 70%), var(--paper-edge); padding: 90px 0 100px; margin: 60px 0; box-shadow: inset 0 0 0 6px var(--paper-edge), inset 0 0 0 7px var(--frame); }
 .paths { max-width: 1260px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; align-items: stretch; }
 .path { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
   padding: 46px 26px 30px; background: var(--paper);
   border: 1px solid rgba(35,26,18,.45); outline: 1px solid rgba(35,26,18,.18); outline-offset: 4px;
-  box-shadow: 0 14px 30px rgba(60,15,5,.28); }
+  box-shadow: 0 12px 26px rgba(60,30,10,.16); }
 .path--mid { }
 .path-sym { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; border-radius: 50%;
   display: grid; place-items: center; color: var(--cinnabar); background: var(--paper);
-  border: 1px solid var(--cinnabar); box-shadow: 0 0 0 5px var(--paper), 0 0 0 6px rgba(165,58,27,.35);
+  border: 1px solid var(--cinnabar); box-shadow: 0 0 0 5px var(--paper-edge), 0 0 0 6px rgba(165,58,27,.35);
   font-family: var(--display); font-style: italic; font-weight: 600; font-size: 24px; line-height: 1; }
 .path .eyebrow { margin: 0; }
 .path-title { margin-top: 10px; font-family: var(--display); font-weight: 700; font-size: 34px; line-height: 1.05; }
