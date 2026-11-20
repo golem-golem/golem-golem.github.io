@@ -998,7 +998,7 @@ button.tarot-pic:hover img, button.tarot-pic:focus-visible img { filter: brightn
 /* главная: голем с магом чуть ниже; три главы — карточки на красном фоне */
 .hero-img { width: min(640px, 100%); max-height: calc(100% - 175px); }
 @media (max-width: 900px) { .hero-img { width: calc(100% + 44px); max-height: none; margin-top: 56px; } }
-.paths-band { background: radial-gradient(ellipse at 50% 30%, rgba(255,248,230,.45), transparent 70%), var(--paper-edge); padding: 90px 0 100px; margin: 60px 0; box-shadow: inset 0 0 0 6px var(--paper-edge), inset 0 0 0 7px var(--frame); }
+.paths-band { background: radial-gradient(ellipse at 50% 30%, rgba(255,248,230,.45), transparent 70%), var(--paper-edge); padding: 90px 0 100px; margin: 0; box-shadow: inset 0 0 0 6px var(--paper-edge), inset 0 0 0 7px var(--frame); }
 .paths { max-width: 1260px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; align-items: stretch; }
 .path { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
   padding: 46px 26px 30px; background: var(--paper);
@@ -1023,7 +1023,7 @@ button.tarot-pic:hover img, button.tarot-pic:focus-visible img { filter: brightn
 .path .btn { margin-top: auto; white-space: nowrap; }
 @media (max-width: 1100px) and (min-width: 901px) { .paths { padding: 0 24px; gap: 16px; } .path { padding: 44px 16px 26px; } .path-title { font-size: 28px; } }
 @media (max-width: 900px) {
-  .paths-band { padding: 64px 0 64px; margin: 40px 0; }
+  .paths-band { padding: 64px 0 64px; margin: 0; }
   .paths { grid-template-columns: 1fr; gap: 56px; padding: 0 22px; }
   .path { padding: 42px 18px 26px; }
   .path-title { font-size: 30px; }
