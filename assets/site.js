@@ -149,6 +149,19 @@
     transitionTo(a.href);
   });
 
+  // Окошко со скидкой всплывает, когда блок цены появляется на экране.
+  var pop = document.querySelector('.sale-pop');
+  if (pop && 'IntersectionObserver' in window) {
+    pop.classList.add('is-waiting');
+    var io = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      pop.classList.remove('is-waiting');
+      pop.classList.add('is-shown');
+      io.disconnect();
+    }, { threshold: 0.35 });
+    io.observe(pop.closest('.exlibris') || pop);
+  }
+
   // Возврат кнопкой «Назад»: страница может прийти из кэша вместе с затемнением — убираем его.
   window.addEventListener('pageshow', removeVeil);
 })();
