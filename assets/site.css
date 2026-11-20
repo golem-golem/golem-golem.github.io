@@ -183,54 +183,6 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 .tagline { align-self: flex-end; margin-top: -6px; font-family: var(--display); font-style: italic; font-weight: 600; font-size: 25px; }
 .title-spread .double-rule { margin-top: 12px; }
 .intro { margin-top: 26px; font-size: 18px; max-width: 58ch; }
-/* три двери в разделы на входе: крупные, с гравюрами — чтобы хотелось нажать */
-.doors { margin-top: 16px; display: grid; gap: 14px; }
-.door {
-  display: grid; grid-template-columns: 128px minmax(0, 1fr) 46px; align-items: center; gap: 18px;
-  padding: 10px 16px 10px 10px;
-  border: 1.5px solid var(--cinnabar); background: var(--paper); color: var(--ink); text-decoration: none;
-  box-shadow: 0 8px 18px rgba(60, 30, 10, 0.14);
-  outline: 1px solid var(--frame); outline-offset: -6px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-.door:hover, .door:focus-visible {
-  color: var(--ink); background: linear-gradient(var(--cinnabar-wash), var(--cinnabar-wash)), var(--paper); transform: translateY(-3px);
-  box-shadow: 0 14px 26px rgba(60, 30, 10, 0.22);
-}
-.door-pic { position: relative; display: block; border: 1px solid var(--frame); padding: 3px; }
-.door-pic img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
-.door-num {
-  position: absolute; left: -12px; top: -12px;
-  width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
-  background: var(--cinnabar); color: var(--on-cinnabar);
-  font-family: var(--display); font-weight: 700; font-size: 15px;
-  box-shadow: inset 0 0 0 2.5px var(--cinnabar), inset 0 0 0 3.5px var(--on-cinnabar), 0 0 0 3px var(--paper);
-}
-.door-text { display: block; min-width: 0; }
-.door-title { display: block; font-family: var(--display); font-weight: 700; font-size: 28px; line-height: 1.08; }
-.door-sub { display: block; margin-top: 5px; font-family: var(--display); font-style: italic; font-size: 17px; line-height: 1.3; color: var(--ink-soft); }
-.door-go {
-  width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
-  background: var(--cinnabar); color: var(--on-cinnabar); font-size: 22px; line-height: 1;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-.door:hover .door-go, .door:focus-visible .door-go, .read-tile:hover .door-go, .read-tile:focus-visible .door-go { transform: translateX(4px); background: var(--cinnabar-deep); }
-/* плашка «Читать вместе» в главе библиотеки */
-.read-tile {
-  margin-top: 30px; display: grid; grid-template-columns: 110px minmax(0, 1fr) 46px; align-items: center; gap: 16px;
-  padding: 10px 16px 10px 10px; color: var(--ink); text-decoration: none;
-  border: 1.5px solid var(--cinnabar); background: linear-gradient(var(--cinnabar-wash), var(--cinnabar-wash)), var(--paper);
-  outline: 1px solid var(--frame); outline-offset: -6px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.read-tile:hover, .read-tile:focus-visible { color: var(--ink); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(60, 30, 10, 0.18); }
-.read-tile-pic { display: block; border: 1px solid var(--frame); padding: 3px; }
-.read-tile-pic img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
-.read-tile-text { display: block; min-width: 0; }
-.read-tile-eyebrow { display: block; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cinnabar); }
-.read-tile-title { display: block; margin-top: 2px; font-family: var(--display); font-weight: 700; font-size: 26px; line-height: 1.1; }
-.read-tile-sub { display: block; margin-top: 3px; font-family: var(--display); font-style: italic; font-size: 16px; line-height: 1.3; color: var(--ink-soft); }
-@media (prefers-reduced-motion: reduce) { .door, .read-tile, .door-go { transition: none; } }
 .toc-head { margin-top: 34px; font-family: var(--display); font-style: italic; font-weight: 600; font-size: 28px; }
 .toc { margin-top: 6px; display: flex; flex-direction: column; }
 .toc a {
@@ -922,8 +874,6 @@ button.tarot-pic:hover img, button.tarot-pic:focus-visible img { filter: brightn
   .title-spread .tagline { order: 2; }
   .title-spread .double-rule { order: 3; }
   .title-spread .intro { order: 4; }
-  .title-spread .toc-head { order: 5; }
-  .title-spread .doors { order: 6; }
   .title-spread .hero-img { order: 7; }
   .topnav { width: 100%; justify-content: space-between; gap: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--hair); }
   .topnav .full { display: none; }
@@ -949,15 +899,6 @@ button.tarot-pic:hover img, button.tarot-pic:focus-visible img { filter: brightn
   .toc-n { width: 34px; font-size: 21px; }
   .toc-t { font-size: 21px; }
   .toc-dots, .toc-p { display: none; }
-  .doors { gap: 12px; }
-  .door { grid-template-columns: 92px minmax(0, 1fr) 38px; gap: 12px; padding: 8px 10px 8px 8px; }
-  .door-title { font-size: 22px; }
-  .door-sub { font-size: 15px; }
-  .door-go { width: 38px; height: 38px; font-size: 19px; }
-  .door-num { width: 30px; height: 30px; font-size: 13px; left: -10px; top: -10px; }
-  .read-tile { grid-template-columns: 84px minmax(0, 1fr) 38px; gap: 12px; padding: 8px 10px 8px 8px; }
-  .read-tile-title { font-size: 22px; }
-  .read-tile-sub { font-size: 15px; }
 
   /* главы */
   .chapter-title { font-size: 38px; }
@@ -1053,3 +994,39 @@ button.tarot-pic:hover img, button.tarot-pic:focus-visible img { filter: brightn
   .book-right h3 { font-size: 26px; }
   .book-right .exlibris-inner { padding: 20px 16px 16px; gap: 10px; }
 }
+
+/* главная: голем с магом чуть ниже; три главы — карточки на красном фоне */
+.hero-img { width: min(640px, 100%); max-height: calc(100% - 175px); }
+@media (max-width: 900px) { .hero-img { width: calc(100% + 44px); max-height: none; margin-top: 56px; } }
+.paths-band { background: var(--cinnabar); padding: 90px 0 100px; margin: 60px 0; box-shadow: inset 0 0 0 6px var(--cinnabar), inset 0 0 0 7px rgba(239,228,202,.55); }
+.paths { max-width: 1260px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; align-items: stretch; }
+.path { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 46px 26px 30px; background: var(--paper);
+  border: 1px solid rgba(35,26,18,.45); outline: 1px solid rgba(35,26,18,.18); outline-offset: 4px;
+  box-shadow: 0 14px 30px rgba(60,15,5,.28); }
+.path--mid { }
+.path-sym { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; border-radius: 50%;
+  display: grid; place-items: center; color: var(--cinnabar); background: var(--paper);
+  border: 1px solid var(--cinnabar); box-shadow: 0 0 0 5px var(--paper), 0 0 0 6px rgba(165,58,27,.35);
+  font-family: var(--display); font-style: italic; font-weight: 600; font-size: 24px; line-height: 1; }
+.path .eyebrow { margin: 0; }
+.path-title { margin-top: 10px; font-family: var(--display); font-weight: 700; font-size: 34px; line-height: 1.05; }
+.path-sub { margin-top: 6px; font-family: var(--display); font-style: italic; font-size: 19px; color: var(--ink-soft); }
+.path-pic { width: 100%; margin-top: 20px; padding: 4px; border: 1px solid rgba(35,26,18,.4); }
+.path-pic img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
+.path-lede { margin: 18px 0 0; font-size: 17px; line-height: 1.55; text-align: left; }
+.path-facts { width: 100%; margin: 18px 0 22px; padding: 0; text-align: left; }
+.path-facts div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px dotted rgba(35,26,18,.4); }
+.path-facts div:last-child { border-bottom: 1px dotted rgba(35,26,18,.4); }
+.path-facts dt { font-family: var(--display); font-style: italic; font-size: 17px; color: var(--ink-soft); }
+.path-facts dd { margin: 0; font-family: var(--display); font-weight: 500; font-size: 18px; color: var(--ink); text-align: right; }
+.path .btn { margin-top: auto; white-space: nowrap; }
+@media (max-width: 1100px) and (min-width: 901px) { .paths { padding: 0 24px; gap: 16px; } .path { padding: 44px 16px 26px; } .path-title { font-size: 28px; } }
+@media (max-width: 900px) {
+  .paths-band { padding: 64px 0 64px; margin: 40px 0; }
+  .paths { grid-template-columns: 1fr; gap: 56px; padding: 0 22px; }
+  .path { padding: 42px 18px 26px; }
+  .path-title { font-size: 30px; }
+  .path-lede { font-size: 16.5px; }
+}
+
