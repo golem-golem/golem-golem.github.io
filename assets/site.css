@@ -360,6 +360,65 @@ ol, ul { margin: 0; padding: 0; list-style: none; }
 .offer blockquote { margin: 4px 0 0; font-family: var(--display); font-style: italic; font-size: 23px; line-height: 1.4; max-width: 36ch; }
 .offer-text { max-width: 52ch; }
 .offer + .offer { margin-top: 26px; }
+
+/* чтение с сопровождением: страница книги с пометками на полях */
+.marg-book { margin: 10px 0 8px; width: 100%; }
+.mb-page {
+  position: relative;
+  padding: 16px 20px 22px 28px;
+  background:
+    linear-gradient(90deg, rgba(90, 60, 30, 0.16), transparent 22px),
+    linear-gradient(180deg, #f7efdc, #f1e6cc);
+  border: 1px solid rgba(35, 26, 18, 0.35);
+  border-left-color: rgba(35, 26, 18, 0.55);
+  box-shadow: 0 8px 18px rgba(60, 30, 10, 0.14), 3px 3px 0 -1px #efe3c6, 3px 3px 0 0 rgba(35, 26, 18, 0.25);
+}
+.mb-head {
+  margin-bottom: 10px; padding-bottom: 6px;
+  border-bottom: 1px solid rgba(35, 26, 18, 0.25);
+  text-align: center; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+}
+.mb-row { display: grid; grid-template-columns: minmax(0, 1fr) 36%; gap: 18px; align-items: start; }
+.mb-row + .mb-row { margin-top: 8px; }
+.mb-text { margin: 0; font-size: 15.5px; line-height: 1.55; text-align: justify; hyphens: auto; color: var(--ink); }
+.mb-text sup { font-size: 10px; color: var(--cinnabar); }
+.mb-u {
+  background-image: linear-gradient(var(--cinnabar), var(--cinnabar));
+  background-repeat: no-repeat; background-position: 0 94%; background-size: 100% 1.6px;
+  transition: background-size 0.9s ease;
+}
+.mb-ref { margin-left: 2px; font-family: 'Caveat', 'Marck Script', cursive; font-weight: 600; font-size: 17px; line-height: 0; vertical-align: super; color: var(--cinnabar); }
+.mb-note {
+  margin: 0; padding-left: 10px;
+  border-left: 1.5px solid rgba(165, 58, 27, 0.55);
+  font-family: 'Caveat', 'Marck Script', cursive; font-weight: 500; font-size: 20px; line-height: 1.12;
+  color: var(--cinnabar);
+  transform: rotate(-2deg); transform-origin: left top;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.mb-note .mb-ref { vertical-align: baseline; line-height: 1; margin: 0 2px 0 0; }
+.mb-ribbon {
+  position: absolute; left: 34px; top: calc(100% - 12px);
+  width: 13px; height: 52px; background: var(--cinnabar);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+}
+.marg-book figcaption { margin-top: 48px; font-family: var(--display); font-style: italic; font-size: 18px; color: var(--ink-soft); }
+/* пометки проступают, когда страницу долистали */
+.marg-book.is-waiting .mb-u { background-size: 0% 1.6px; }
+.marg-book.is-waiting .mb-note { opacity: 0; transform: rotate(-5deg) translateX(8px); }
+.marg-book .mb-row:nth-of-type(3) .mb-u, .marg-book .mb-row:nth-of-type(3) .mb-note { transition-delay: 0.6s; }
+.marg-book .mb-row:nth-of-type(4) .mb-u, .marg-book .mb-row:nth-of-type(4) .mb-note { transition-delay: 1.2s; }
+@media (max-width: 560px) {
+  .mb-page { padding: 14px 14px 20px 20px; }
+  .mb-row { grid-template-columns: 1fr; gap: 6px; }
+  .mb-row + .mb-row { margin-top: 12px; }
+  .mb-note { margin-left: 14px; font-size: 19px; transform: rotate(-1deg); }
+  .mb-text { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marg-book.is-waiting .mb-u { background-size: 100% 1.6px; }
+  .marg-book.is-waiting .mb-note { opacity: 1; transform: rotate(-2deg); }
+}
 .offer-note { max-width: 52ch; font-family: var(--display); font-style: italic; font-size: 19px; line-height: 1.4; color: var(--ink-soft); }
 .offer-lead { max-width: 40ch; font-family: var(--display); font-style: italic; font-weight: 600; font-size: 21px; line-height: 1.35; color: var(--cinnabar); }
 .requests-other { margin-top: 22px; }

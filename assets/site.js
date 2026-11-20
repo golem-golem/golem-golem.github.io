@@ -162,6 +162,20 @@
     io.observe(pop.closest('.exlibris') || pop);
   }
 
+  // Страница книги с пометками: подчёркивания и записи на полях проступают, когда её долистали.
+  if ('IntersectionObserver' in window) {
+    var books = document.querySelectorAll('.marg-book');
+    Array.prototype.forEach.call(books, function (bk) {
+      bk.classList.add('is-waiting');
+      var obs = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        bk.classList.remove('is-waiting');
+        obs.disconnect();
+      }, { threshold: 0.45 });
+      obs.observe(bk);
+    });
+  }
+
   // Возврат кнопкой «Назад»: страница может прийти из кэша вместе с затемнением — убираем его.
   window.addEventListener('pageshow', removeVeil);
 })();
